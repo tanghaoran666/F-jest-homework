@@ -1,11 +1,12 @@
 jest.mock("axios")
-import axios from '../../__mocks__/axios';
 import getUsers from '../users';
 
+jest.mock("axios");
+
 describe("users", () => {
-  test("should get users data with mock axios get", () => {
+  test("should get users data with mock axios get", async() => {
     // TODO 13: add async test with manual mock
-    getUsers();
-    expect(axios.get).toHaveReturnedWith({name:"thr"})
+    const result = getUsers();
+    await expect(result).resolves.toEqual({name:"thr"})
   });
 });
